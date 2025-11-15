@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="sunGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FCD34D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="115" fill="url(#skyGradient)"/>
+
+  <!-- Sun -->
+  <circle cx="340" cy="180" r="80" fill="url(#sunGradient)"/>
+  <circle cx="340" cy="180" r="65" fill="#FBBF24"/>
+
+  <!-- Cloud -->
+  <g opacity="0.95">
+    <!-- Cloud shadow -->
+    <ellipse cx="256" cy="355" rx="130" ry="15" fill="#2563EB" opacity="0.2"/>
+
+    <!-- Cloud body -->
+    <path d="M 180 320 Q 160 290 180 260 Q 200 240 230 250 Q 240 220 270 220 Q 310 220 320 250 Q 350 240 370 260 Q 390 280 380 310 Q 390 340 360 350 Q 200 350 180 320 Z"
+          fill="#FFFFFF" stroke="#E5E7EB" stroke-width="3"/>
+
+    <!-- Cloud highlights -->
+    <ellipse cx="270" cy="260" rx="25" ry="15" fill="#F3F4F6" opacity="0.7"/>
+    <ellipse cx="320" cy="270" rx="20" ry="12" fill="#F3F4F6" opacity="0.6"/>
+  </g>
+
+  <!-- Raindrops -->
+  <g opacity="0.8">
+    <path d="M 220 360 Q 215 370 220 380 Q 225 385 230 380 Q 235 370 230 360 Q 225 355 220 360 Z" fill="#60A5FA"/>
+    <path d="M 270 370 Q 265 380 270 390 Q 275 395 280 390 Q 285 380 280 370 Q 275 365 270 370 Z" fill="#60A5FA"/>
+    <path d="M 320 360 Q 315 370 320 380 Q 325 385 330 380 Q 335 370 330 360 Q 325 355 320 360 Z" fill="#60A5FA"/>
+  </g>
+</svg>

@@ -10,10 +10,27 @@ const rateLimiter = require('./middleware/rateLimiter');
 const app = express();
 
 // Security middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com"],
+      imgSrc: ["'self'", "data:", "https:", "blob:"],
+      connectSrc: ["'self'", "https://api.openweathermap.org", "https://*.tile.openstreetmap.org"],
+      fontSrc: ["'self'", "data:"],
+      objectSrc: ["'none'"],
+      mediaSrc: ["'self'"],
+      frameSrc: ["'none'"]
+    }
+  },
+  crossOriginEmbedderPolicy: false
+}));
+
 app.use(cors({
   origin: config.cors.origin,
-  credentials: true
+  credentials: true,
+  exposedHeaders: ['Content-Length', 'X-Requested-With']
 }));
 
 // Compression middleware
@@ -25,6 +42,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // Rate limiting
 app.use('/api', rateLimiter);
+
+// PWA support headers
+app.use((req, res, next) => {
+  // Service Worker caching headers
+  if (req.path.includes('/api/')) {
+    res.setHeader('Cache-Control', 'public, max-age=600'); // 10 minutos
+  }
+  next();
+});
 
 // Logging middleware
 app.use((req, res, next) => {

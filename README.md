@@ -8,6 +8,7 @@ Dashboard completo de previsão do tempo com dados em tempo real, mapas interati
 
 ## 📋 Recursos
 
+### Funcionalidades Meteorológicas
 - 🌤️ **Previsão de 10 dias** - Visualize a previsão detalhada do tempo
 - 🗺️ **Mapas de radar** - Mapas interativos com Leaflet
 - ⚠️ **Alertas climáticos** - Notificações em tempo real de eventos meteorológicos
@@ -15,6 +16,15 @@ Dashboard completo de previsão do tempo com dados em tempo real, mapas interati
 - 📍 **Geolocalização** - Detecção automática da sua localização
 - 🔍 **Busca de cidades** - Pesquise o clima de qualquer lugar do mundo
 - 💨 **Qualidade do ar** - Informações sobre poluição atmosférica
+
+### 📱 Progressive Web App (PWA)
+- ⚡ **Instalável** - Instale no seu dispositivo móvel ou desktop
+- 🔄 **Offline First** - Funciona mesmo sem conexão à internet
+- 🚀 **Cache Inteligente** - Carregamento instantâneo com cache otimizado
+- 🔔 **Atualizações Automáticas** - Notificações de novas versões
+- 📦 **Cache de API** - Dados meteorológicos salvos localmente (10 min)
+- 🗺️ **Cache de Mapas** - Tiles do OpenStreetMap armazenados (30 dias)
+- 🎨 **Ícones Adaptativos** - Suporte completo para iOS e Android
 
 ## 🏗️ Arquitetura
 
@@ -64,6 +74,8 @@ weather-dashboard/
 - **Axios** - Cliente HTTP
 - **Vite** - Build tool
 - **Vitest** - Framework de testes
+- **Vite PWA Plugin** - Progressive Web App
+- **Workbox** - Service Worker e cache strategies
 
 ### API Externa
 - **OpenWeather API** - Dados meteorológicos em tempo real
@@ -139,6 +151,49 @@ cd frontend
 npm test
 npm run test:watch
 ```
+
+## 📱 Instalando como PWA
+
+O Weather Dashboard é uma **Progressive Web App (PWA)** completa que pode ser instalada em qualquer dispositivo!
+
+### 📲 No Celular (Android/iOS)
+
+1. **Abra o app no navegador** (Chrome, Safari, Edge)
+2. **Toque no menu** (⋮ ou compartilhar)
+3. **Selecione "Adicionar à Tela Inicial"** ou "Instalar aplicativo"
+4. **Pronto!** O app agora está na sua tela inicial 🎉
+
+### 💻 No Desktop (Chrome, Edge)
+
+1. **Acesse** http://localhost (ou seu domínio)
+2. **Clique no ícone de instalação** na barra de endereço (➕)
+3. **Ou** vá em Menu → Instalar Weather Dashboard
+4. **O app abrirá em janela própria!**
+
+### 🔌 Funcionalidades Offline
+
+Mesmo sem internet, você pode:
+- ✅ Visualizar dados meteorológicos em cache (até 10 minutos)
+- ✅ Navegar pelo mapa com tiles armazenados
+- ✅ Ver previsões e gráficos salvos
+- ✅ Interface totalmente funcional
+
+### 🔄 Cache Strategy
+
+| Recurso | Estratégia | TTL |
+|---------|------------|-----|
+| API Weather | Network First | 10 min |
+| Tiles do Mapa | Cache First | 30 dias |
+| Assets (JS/CSS) | Cache First | 1 ano |
+| Ícones Weather | Cache First | 30 dias |
+| Leaflet CDN | Cache First | 1 ano |
+
+### 🔔 Atualizações
+
+O app verifica atualizações automaticamente a cada 60 segundos. Quando houver uma nova versão:
+1. Uma notificação aparecerá no canto inferior
+2. Clique em "**Atualizar agora**" para aplicar
+3. O app será recarregado com a nova versão
 
 ## 📡 API Endpoints
 

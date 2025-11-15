@@ -18,11 +18,14 @@
         <p>Weather Dashboard © 2024 - Dados fornecidos por OpenWeather API</p>
       </div>
     </footer>
+
+    <!-- PWA Update Notification -->
+    <PWAUpdatePrompt />
   </div>
 </template>
 
 <script setup>
-// Main app component
+import PWAUpdatePrompt from '@/components/PWAUpdatePrompt.vue'
 </script>
 
 <style>

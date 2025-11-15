@@ -2,9 +2,32 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/weather-icon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- PWA Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="description" content="Dashboard completo de previsão do tempo com dados em tempo real, alertas meteorológicos e mapas interativos" />
+    <meta name="keywords" content="clima, tempo, previsão, meteorologia, weather, dashboard" />
+    <meta name="author" content="Weather Dashboard Team" />
+
+    <!-- Theme Colors -->
+    <meta name="theme-color" content="#3B82F6" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Weather" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+    <link rel="mask-icon" href="/icon.svg" color="#3B82F6" />
+
+    <!-- Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
     <title>Weather Dashboard - Previsão do Tempo</title>
+
+    <!-- External Styles -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   </head>
   <body>
