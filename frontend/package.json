@@ -1,0 +1,32 @@
+{
+  "name": "weather-dashboard-frontend",
+  "version": "1.0.0",
+  "description": "Frontend microservice for Weather Dashboard",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5",
+    "axios": "^1.6.0",
+    "chart.js": "^4.4.0",
+    "leaflet": "^1.9.4",
+    "pinia": "^2.1.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.4.0",
+    "@vue/test-utils": "^2.4.1",
+    "vite": "^4.5.0",
+    "vitest": "^0.34.6",
+    "jsdom": "^22.1.0",
+    "@vitest/coverage-v8": "^0.34.6",
+    "eslint": "^8.52.0",
+    "eslint-plugin-vue": "^9.17.0"
+  }
+}
