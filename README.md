@@ -1,10 +1,55 @@
 # 🌤️ Weather Dashboard
 
-Dashboard completo de previsão do tempo com dados em tempo real, mapas interativos e análise histórica.
+<div align="center">
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
-![Vue](https://img.shields.io/badge/vue-3.3.4-brightgreen.svg)
+**Dashboard completo de previsão do tempo com PWA, dados em tempo real, mapas interativos e análise histórica**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)](https://nodejs.org/)
+[![Vue](https://img.shields.io/badge/vue-3.3.4-4FC08D?logo=vue.js)](https://vuejs.org/)
+[![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=github-actions)](https://github.com/features/actions)
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](https://www.docker.com/)
+[![PWA](https://img.shields.io/badge/PWA-Enabled-5A0FC8?logo=pwa)](https://web.dev/progressive-web-apps/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+[Demo](#) • [Documentação](docs/DEPLOYMENT.md) • [Contribuir](CONTRIBUTING.md) • [Reportar Bug](https://github.com/seu-usuario/weather-dashboard/issues)
+
+![Weather Dashboard Screenshot](https://via.placeholder.com/800x400/3B82F6/FFFFFF?text=Weather+Dashboard+Screenshot)
+
+</div>
+
+---
+
+## ✨ Highlights
+
+<table>
+<tr>
+<td width="50%">
+
+### 🎯 Características Principais
+- ✅ **Arquitetura de Microserviços** com Docker
+- ✅ **PWA Completo** - Funciona offline
+- ✅ **Input Validation** com Joi
+- ✅ **Logging Estruturado** com Winston
+- ✅ **Error Boundaries** no Vue 3
+- ✅ **CI/CD** com GitHub Actions
+- ✅ **Security Headers** (CSP, HSTS, XSS Protection)
+- ✅ **Rate Limiting** e Cache inteligente
+
+</td>
+<td width="50%">
+
+### 📊 Stack Tecnológico
+- 🎨 **Frontend**: Vue 3, Pinia, Vite, Tailwind CSS
+- ⚙️ **Backend**: Node.js, Express, Winston, Joi
+- 📦 **DevOps**: Docker, Docker Compose, GitHub Actions
+- 🗺️ **Mapas**: Leaflet, OpenStreetMap
+- 📈 **Gráficos**: Chart.js
+- 🔒 **Segurança**: Helmet, CORS, Rate Limiting
+
+</td>
+</tr>
+</table>
 
 ## 📋 Recursos
 
@@ -247,11 +292,25 @@ curl "http://localhost:3001/api/weather/forecast?lat=-23.5505&lon=-46.6333&days=
 
 ## 🔒 Segurança
 
-- **Helmet.js** - Headers HTTP seguros
-- **Rate Limiting** - Proteção contra abuso
-- **CORS** - Configuração de origens permitidas
-- **Validação de entrada** - Validação de parâmetros
-- **Cache** - Cache inteligente para reduzir chamadas à API
+Este projeto implementa múltiplas camadas de segurança:
+
+### Headers de Segurança
+- ✅ **Content Security Policy (CSP)** - Previne XSS
+- ✅ **HSTS** - Força HTTPS
+- ✅ **X-Content-Type-Options** - Previne MIME sniffing
+- ✅ **X-Frame-Options** - Previne clickjacking
+- ✅ **X-XSS-Protection** - Proteção adicional contra XSS
+
+### Validação e Limitação
+- ✅ **Joi Validation** - Validação robusta de inputs
+- ✅ **Rate Limiting** - 100 requests/15min por IP
+- ✅ **CORS Configurável** - Controle de origens
+- ✅ **Environment Validation** - Validação de env vars no startup
+
+### Logging e Monitoramento
+- ✅ **Winston** - Logging estruturado em JSON
+- ✅ **Error Tracking** - Logs detalhados de erros
+- ✅ **Request Logging** - Rastreamento de requisições
 
 ## ⚡ Performance
 
@@ -364,3 +423,45 @@ Para dúvidas ou sugestões, abra uma issue no GitHub.
 ---
 
 **Desenvolvido com ❤️ usando Vue.js e Node.js**
+## 🤝 Contribuindo
+
+Contribuições são bem-vindas! Por favor, leia o [Guia de Contribuição](CONTRIBUTING.md) antes de enviar pull requests.
+
+### Como Contribuir
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/MinhaFeature`)
+3. Commit suas mudanças (`git commit -m 'feat: Adiciona MinhaFeature'`)
+4. Push para a branch (`git push origin feature/MinhaFeature`)
+5. Abra um Pull Request
+
+Veja o [CONTRIBUTING.md](CONTRIBUTING.md) para detalhes completos.
+
+## 📝 Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## 👨‍💻 Autor
+
+**Seu Nome**
+- GitHub: [@seu-usuario](https://github.com/seu-usuario)
+- LinkedIn: [Seu Nome](https://linkedin.com/in/seu-perfil)
+- Portfolio: [seuportfolio.com](https://seuportfolio.com)
+
+## 🙏 Agradecimentos
+
+- [OpenWeather](https://openweathermap.org/) - API de dados meteorológicos
+- [OpenStreetMap](https://www.openstreetmap.org/) - Mapas e tiles
+- [Leaflet](https://leafletjs.com/) - Biblioteca de mapas interativos
+- [Vue.js](https://vuejs.org/) - Framework frontend
+- [Express](https://expressjs.com/) - Framework backend
+
+---
+
+<div align="center">
+
+**Feito com ❤️ e ☕**
+
+Se este projeto foi útil, considere dar uma ⭐!
+
+</div>

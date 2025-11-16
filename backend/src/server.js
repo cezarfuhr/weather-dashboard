@@ -6,6 +6,7 @@ const config = require('./config/config');
 const routes = require('./routes');
 const errorHandler = require('./middleware/errorHandler');
 const rateLimiter = require('./middleware/rateLimiter');
+const logger = require('./utils/logger');
 
 const app = express();
 
@@ -14,17 +15,29 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrc: ["'self'", "'unsafe-inline'"], // Note: unsafe-inline required for Vite dev
       styleSrc: ["'self'", "'unsafe-inline'", "https://unpkg.com"],
       imgSrc: ["'self'", "data:", "https:", "blob:"],
       connectSrc: ["'self'", "https://api.openweathermap.org", "https://*.tile.openstreetmap.org"],
       fontSrc: ["'self'", "data:"],
       objectSrc: ["'none'"],
       mediaSrc: ["'self'"],
-      frameSrc: ["'none'"]
+      frameSrc: ["'none'"],
+      upgradeInsecureRequests: config.nodeEnv === 'production' ? [] : null
     }
   },
-  crossOriginEmbedderPolicy: false
+  crossOriginEmbedderPolicy: false,
+  hsts: {
+    maxAge: 31536000, // 1 year
+    includeSubDomains: true,
+    preload: true
+  },
+  hidePoweredBy: true,
+  noSniff: true,
+  xssFilter: true,
+  frameguard: {
+    action: 'deny'
+  }
 }));
 
 app.use(cors({
@@ -54,7 +67,10 @@ app.use((req, res, next) => {
 
 // Logging middleware
 app.use((req, res, next) => {
-  console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
+  logger.http(`${req.method} ${req.path}`, {
+    ip: req.ip,
+    userAgent: req.get('user-agent')
+  });
   next();
 });
 
@@ -91,12 +107,30 @@ app.use((req, res) => {
   });
 });
 
+// Validate required environment variables
+const validateEnv = () => {
+  const required = ['OPENWEATHER_API_KEY'];
+  const missing = required.filter(key => !process.env[key]);
+
+  if (missing.length > 0) {
+    logger.error(`Missing required environment variables: ${missing.join(', ')}`);
+    logger.error('Please check your .env file and ensure all required variables are set.');
+    process.exit(1);
+  }
+
+  logger.info('✓ Environment variables validated');
+};
+
 // Start server
 const PORT = config.port;
+
+// Validate environment before starting
+validateEnv();
+
 app.listen(PORT, () => {
-  console.log(`🌤️  Weather Dashboard Backend running on port ${PORT}`);
-  console.log(`🔧 Environment: ${config.nodeEnv}`);
-  console.log(`🌍 CORS enabled for: ${config.cors.origin}`);
+  logger.info(`🌤️  Weather Dashboard Backend running on port ${PORT}`);
+  logger.info(`🔧 Environment: ${config.nodeEnv}`);
+  logger.info(`🌍 CORS enabled for: ${config.cors.origin}`);
 });
 
 module.exports = app;

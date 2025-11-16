@@ -1,26 +1,37 @@
 const express = require('express');
 const router = express.Router();
 const weatherController = require('../controllers/weatherController');
+const { validate, schemas } = require('../middleware/validation');
+const Joi = require('joi');
 
-// Get current weather
-router.get('/current', weatherController.getCurrentWeather);
+// Validation schemas for routes
+const currentWeatherSchema = {
+  query: schemas.coordinates.keys(),
+};
 
-// Get forecast
-router.get('/forecast', weatherController.getForecast);
+const forecastSchema = {
+  query: schemas.coordinates.keys().append(schemas.days.keys()),
+};
 
-// Get weather alerts
-router.get('/alerts', weatherController.getAlerts);
+const historicalSchema = {
+  query: schemas.coordinates.keys().append(schemas.timestamp.keys()),
+};
 
-// Get historical data
-router.get('/historical', weatherController.getHistorical);
+const geocodeSchema = {
+  query: schemas.city.keys(),
+};
 
-// Get air pollution data
-router.get('/pollution', weatherController.getAirPollution);
+const reverseGeocodeSchema = {
+  query: schemas.coordinates.keys(),
+};
 
-// Geocoding
-router.get('/geocode', weatherController.geocodeCity);
-
-// Reverse geocoding
-router.get('/reverse-geocode', weatherController.reverseGeocode);
+// Routes with validation
+router.get('/current', validate(currentWeatherSchema), weatherController.getCurrentWeather);
+router.get('/forecast', validate(forecastSchema), weatherController.getForecast);
+router.get('/alerts', validate(currentWeatherSchema), weatherController.getAlerts);
+router.get('/historical', validate(historicalSchema), weatherController.getHistorical);
+router.get('/pollution', validate(currentWeatherSchema), weatherController.getAirPollution);
+router.get('/geocode', validate(geocodeSchema), weatherController.geocodeCity);
+router.get('/reverse-geocode', validate(reverseGeocodeSchema), weatherController.reverseGeocode);
 
 module.exports = router;
